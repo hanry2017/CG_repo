@@ -1,0 +1,106 @@
+# Week2  Assignment
+## Sequences of Numbers
+```{r}
+a <- seq (1,10)
+a
+
+b <- seq(10,1 , by= -1)
+b
+
+c <- seq(0.1,0.9 , by= .1)
+c
+
+d <- seq(1,1)
+d
+
+e <- seq(1,10 , by= 3)
+e
+```
+
+##Vectors
+```{r}
+x <- c("WIU","1st quarter",22)
+x
+
+x <- c("WIU","2nd quarter",18)
+x
+
+x <- c("WIU","3rd quarter",22)
+x
+
+x <- c("WIU","4th quarter",30)
+x
+
+x <- c("Omaha","1st quarter",16)
+x
+
+x <- c("Omaha","2nd quarter",16)
+x
+
+x <- c("Omaha","3rd quarter",8)
+x
+
+x <- c("Omaha","4th quarter",30)
+x
+```
+
+##Missing Values
+```{r}
+x <- c("a","b",NA,"d")
+is.na(x)
+is.nan(x)
+
+x <- c(1,2,NA,NaN)
+y <- is.na(x)
+y
+is.nan(x)
+x[!y]
+
+x <- c(1,2,NA,NaN)
+y <- c("a","b",NA,"d")
+z <- complete.cases(x,y)
+x[z]
+y[z]
+
+```
+
+##Subsetting Vectors
+```{r}
+x <- list(Wiu = c(22,18,22,16), Omaha = c(16,16,8,30))
+x[1]
+
+x[[1]]
+
+x$Wiu
+
+x[["Omaha"]]
+
+x["Omaha"]
+
+x[c(1,2)]
+
+x[[c(1,2)]]
+
+name <- "Wiu"
+x[[name]]
+x$name
+```
+
+##Matrices and Data Frame
+```{r}
+WIU <- c(22,18,22,16)
+Omaha <- c(16,16,8,30)
+
+rbind(WIU,Omaha)
+x <- rbind(WIU,Omaha)
+attributes(x)
+dim(x)
+
+
+
+x <- data.frame(WIU = c(22,18,22,16), Omaha = c(16,16,8,30))
+x
+nrow(x)
+ncol(x)
+```
+
