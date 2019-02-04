@@ -1,0 +1,77 @@
+# Week2  Assignment
+## read file
+```{r}
+sales_data <- read.csv(file="Sales.csv", header= T)
+
+sales_data
+```
+##Create two vectors from two columns from the Dataframe
+```{r}
+year <- sales_data[,1]
+mileage <-sales_data[,2]
+price <-sales_data[,3]
+```
+##Using a for loop and seq_along, find the mean of the first vector. Store the mean in an appropriate variable
+```{r}
+sum <- 0
+num <- 0
+for(x in seq_along(mileage) ){
+ sum <- sum + mileage[x]
+ num <- length(mileage)
+  }
+
+ave <- sum/num
+ave 
+```
+##Create a function that when called on each of the elements in your vector, finds the mean.
+```{r}
+sum <- 0
+ave <- function(i){
+for(x in seq_along(i) ){
+  sum <- sum + i[x]
+  num <- length(i)
+  }
+ave <- sum / num
+}
+mileageave <- ave (mileage)
+mileageave
+
+priceave <- ave(price)
+priceave
+```
+##Using lapply and your own you created in the previous step to find the sum and number of elements of the second vector. Use these two values to find the mean. You will need to initialize your global environment variables here.
+```{r}
+sum <-0
+sumf <- function(i){
+  for (x in seq_along(i)) {
+    sum <- sum + i[x]
+  }
+  sum
+}
+
+numf <- function(i){
+  num <- length(i)
+  num
+}
+
+avef <- function(i){
+  ave <- sumf(i) / numf (i)
+  ave
+}
+
+
+pricelist <- list(price)
+price
+
+sumprice <- lapply(pricelist,sumf)
+sumprice
+
+numprice <- numf(price)
+numprice
+
+aveprice <- lapply(pricelist,avef)
+aveprice
+
+```
+
+
