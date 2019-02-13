@@ -1,0 +1,16 @@
+---
+title: "Week4"
+author: "Hongwei Wang"
+date: "2/12/2019"
+output: html_document
+---
+```{r}
+library("rvest")
+orgdata <- read_html( "https://goleathernecks.com/cumestats.aspx?path=baseball")
+
+datanode <- html_node(orgdata,"table")
+datatable <- html_table(datanode)
+
+datatable
+```
+
