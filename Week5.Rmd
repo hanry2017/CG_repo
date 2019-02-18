@@ -1,0 +1,29 @@
+---
+title: "Week5"
+author: "Hongwei Wang"
+date: "2/18/2019"
+output: html_document
+---
+
+## R Markdown
+
+
+```{r}
+
+library("XML")
+orgdata <-readHTMLTable("http://www.espn.com/nhl/team/roster/_/name/col/colorado-avalanche",which = 3)
+orgdata
+
+birthday <- as.Date(orgdata$Birthdate,"%m/%d/%y")
+today <- as.Date(Sys.Date(),"%m/%d/%y")
+aged <- today - birthday
+agey <- floor(aged/365)
+age <- as.numeric(agey)
+
+newdata<-cbind(orgdata,age)
+newdata
+
+```
+
+
+
