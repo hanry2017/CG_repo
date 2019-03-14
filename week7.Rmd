@@ -1,0 +1,25 @@
+---
+title: "Week7"
+author: "Hongwei Wang"
+date: "3/3/2019"
+output: html_document
+---
+```{r}
+install.packages("gcookbook")
+install.packages("ggplot2")
+library(gcookbook)
+library(ggplot2)
+library("rvest")
+orgdata <- read_html( "https://ucr.fbi.gov/crime-in-the-u.s/2016/crime-in-the-u.s.-2016/topic-pages/tables/table-1")
+
+datanode <- html_node(orgdata,"table")
+datatable <- html_table(datanode)
+
+datatable
+names(datatable)[12]<-paste("Robberyrate")
+datatable$Year[19] <- 2015
+datatable$Year[5] <- 2001
+ggplot(datatable, aes(x=Year, y=Robberyrate)) + geom_point(size=3,shape=21) 
+ggplot(datatable, aes(x=Year, y=Robberyrate))+geom_point() + stat_smooth(method=lm)
+```
+
