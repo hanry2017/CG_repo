@@ -1,0 +1,26 @@
+---
+title: "Week8"
+author: "Hongwei Wang"
+date: "2019/3/24"
+output: html_document
+---
+```{r}
+library("rvest")
+orgdata <- read_html( "https://ucr.fbi.gov/crime-in-the-u.s/2016/crime-in-the-u.s.-2016/topic-pages/tables/table-1")
+datanode <- html_node(orgdata,"table")
+datatable <- html_table(datanode)
+datatable
+names(datatable)[12]<-paste("Robberyrate")
+datatable$Year[19] <- 2015
+datatable$Year[5] <- 2001
+
+Year <- as.vector(datatable$Year)
+Rrate <- as.vector(datatable$Robberyrate)
+
+data <- data.frame(Year,Rrate)
+Cluster <- kmeans(data, centers = 2)
+par(mar=rep(0.2,4))
+plot(Year, Rrate, col = Cluster$cluster, pch = 19, cex = 2)
+points(Cluster$centers, col = 1:2, pch = 3, cex = 3, lwd = 3)
+```
+
