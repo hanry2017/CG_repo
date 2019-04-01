@@ -1,0 +1,33 @@
+---
+title: "Week9"
+author: "Hongwei Wang"
+date: "2019/3/31"
+output: html_document
+---
+```{r}
+library("rvest")
+orgdata <- read_html( "https://www.qld.gov.au/transport/safety/road-safety/driving-safely/stopping-distances/graph")
+datanode <- html_node(orgdata,"table")
+datatable <- html_table(datanode,fill = TRUE)
+names(datatable)[4] <-"Total"
+table1 <-as.data.frame(datatable)
+table1
+## I used data on speed and stopping distance.
+
+## Because the table has letters, I changed the data in the table to a number.
+table1$Speed <- c(40,50,60,70,80,90,100,110)
+table1$Total <- c(26,35,45,56,69,83,98,113)
+table1
+plot(table1$Speed,table1$Total)
+a <-lm(Total~Speed,table1)
+e <-resid(a)
+y <-predict(a)
+
+plot (table1$Speed,e)
+abline(h=0,lwd=2)
+
+for (i in 1 : 8)
+  lines (c(table1$Speed[i], table1$Speed[i]), c(e[i],0), col = "red", lwd = 2)
+
+```
+
